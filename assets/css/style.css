@@ -31,11 +31,18 @@ h6 {
     right: 0;
 }
 
-    .copyright {
+.copyright {
         position: relative; /* Thiết lập vị trí tương đối */
         top: 10	0px; /* Di chuyển văn bản xuống dưới 20px */
         left: 0px; /* Di chuyển văn bản sang trái 20px */
-    }
+}
+
+.custom-text {
+    position: relative; /* Thiết lập văn bản với vị trí tuyệt đối */
+    top: -20px; /* Thiết lập khoảng cách từ đỉnh của phần tử cha đến đỉnh của phần tử hiện tại */
+    left: 75px; /* Thiết lập khoảng cách từ mép trái của phần tử cha đến mép trái của phần tử hiện tại */
+}
+
 
 /*--------------------------------------------------------------
 # Back to top button
