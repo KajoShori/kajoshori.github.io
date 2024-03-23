@@ -6,6 +6,10 @@ body {
   color: #272829;
 }
 
+body {
+    background-color: #000000;
+}
+
 a {
   color: #149ddd;
   text-decoration: none;
