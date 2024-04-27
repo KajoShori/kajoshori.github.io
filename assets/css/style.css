@@ -291,6 +291,12 @@ h6 {
   z-index: 2;
   min-width: 300px;
 }
+.hero-container {
+  position: absolute;
+  top: -40%;
+  left: 0%;
+  transform: translate(-100%, 0%);
+}
 
 #hero h1 {
   margin: 0 0 10px 0;
