@@ -880,7 +880,7 @@ section {
 # Contact
 --------------------------------------------------------------*/
 .contact {
-  padding-bottom: 0px;
+  padding-bottom: 10px;
 }
 
 .contact .info {
@@ -1144,3 +1144,11 @@ section {
 .contextmenu {
     font-family: "Tanseek Modern Pro Arabic Book", sans-serif;
 }
+
+#notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1050;
+            display: none;

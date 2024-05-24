@@ -31,7 +31,7 @@
 </head>
 
 <body data-aos="fade-out" data-aos-delay="300">
-
+<div id="notification" class="alert alert-success" role="alert" style="display:none;">Đã copy UID!</div>
   <!-- ======= Mobile nav toggle button ======= -->
   <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
 
@@ -62,7 +62,7 @@
         </ul>
       </nav><!-- .nav-menu -->
 	  <p></p>
-	  <iframe width="100%" height="275" scrolling="no" frameborder="no" allow="autoplay" autoplay="yes" src="https://w.soundcloud.com/player/?url=https
+<iframe width="100%" height="275" scrolling="no" frameborder="no" allow="autoplay" autoplay="yes" src="https://w.soundcloud.com/player/?url=https
 %3A//api.soundcloud.com/tracks/1765049247&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_rep
 osts=false&show_teaser=true&visual=true"></iframe>
     </div>	
@@ -93,10 +93,10 @@ osts=false&show_teaser=true&visual=true"></iframe>
         </div>
 
         <div class="row">
-          <div class="col-lg-4" data-aos="fade-right">
+          <div class="col-lg-4 col-md-4 col-sm-8" data-aos="fade-right">
             <img src="assets/img/profile-img.jpg" class="img-fluid" alt="" width="85%">
           </div>
-          <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+          <div class="col-lg-8 col-md-8 pt-4 pt-lg-0 content" data-aos="fade-left">
             <h3>Một số thông tin về tôi.</h3>
 			<p></p>
             <div class="row">
@@ -129,8 +129,7 @@ osts=false&show_teaser=true&visual=true"></iframe>
 		  <strong><a href="https://www.facebook.com/ADKenhTao" target="_blank" style="color: #2158a3">Nguyễn Viết Uy</a></strong> sở hữu</p>
         </div>
 
-        <div class="row no-gutters">
-
+<!--        <div class="row no-gutters">
           <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
             <div class="count-box">
 			 <i class="bi bi-list-nested"></i>
@@ -166,7 +165,7 @@ osts=false&show_teaser=true&visual=true"></iframe>
 			  <div class="custom-text" style="position: relative;">
 			<p style="position: relative; top: -12px; left: -75px;"><strong>Kinh nghiệm</strong> trong việc Jailbreak iOS</p></div>
           </div>
-        </div>
+        </div> --!>
 		<div class="title" data-aos="fade-up" data-aos-delay="300">
 		<p style="font-size: 15px;" align="center">Từng colab với <strong><a href="https://twitter.com/Miguelaka95" 
 		target="_blank" style="color: #2158a3">@Miguelaka95</a></strong> để Việt hoá <strong><a href="https://havoc.app/package/bettercc" 
@@ -253,10 +252,10 @@ osts=false&show_teaser=true&visual=true"></iframe>
         </div>
 
         <div class="row">
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
+          <div class="col-lg-6 col-md-6 icon-box" data-aos="fade-up">
             <img src="assets/img/icon\gi.jpg" class="img-fluid" alt="" width="70px" align="left">
             <h4 class="title" style="margin-bottom: 0px"><a href="https://genshin.hoyoverse.com/vi/" target = "_ blank" style = "color: #FFA500">Genshin Impact</a></h4>
-			<h5 class="title" style="margin-bottom: 15px"><a>UID: 823937259</a></h5>
+			<h5 class="title" style="margin-bottom: 15px" onclick="copyUID('823937259')"><a>UID: <span id="uid-gi">823937259</span></a></h5>
             <p class="description">Genshin Impact là một <strong>game nhập vai phiêu lưu thế giới mở.</strong> 
 			Bạn sẽ khám phá một thế giới giả tưởng có tên là <strong>Teyvat</strong> trong trò chơi. Trong thế giới rộng lớn 
 			này, bạn có thể du hành qua bảy vương quốc, gặp gỡ những người bạn đồng hành với những tính cách và năng lực 
@@ -264,10 +263,11 @@ osts=false&show_teaser=true&visual=true"></iframe>
 			thể đi lang thang không mục đích và đắm mình trong một thế giới đầy sức sống. Hãy để sự tò mò thúc đẩy bản thân 
 			khám phá mọi bí mật trong thế giới này nào... Cho đến khi bạn đoàn tụ với người thân và chứng kiến sự lắng đọng của mọi thứ ở điểm đến cuối cùng..</p>
           </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-6 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
             <img src="assets/img/icon\hsr.jpg" class="img-fluid" alt="" width="70px" align="left">
             <h4 class="title" style="margin-bottom: 0px"><a href="https://hsr.hoyoverse.com/vi-vn/" target = "_ blank" style = "color: #FFA500">Honkai: Star Rail</a></h4>
-			<h5 class="title" style="margin-bottom: 15px"><a>UID: 802495170</a></h5>
+			<h5 class="title" style="margin-bottom: 15px" onclick="copyUID('802495170')"><a>UID: <span id="uid-hsr">802495170</span></a></h5>
+			<div id="notification" class="alert alert-success" role="alert" style="display:none;">Đã copy UID!</div>
             <p class="description">Trong ngân hà này có một sự tồn tại mang tên <strong>Aeon</strong>, họ tạo ra thực tại, xóa sổ những vì sao, 
 			và để lại dấu tích của mình trong vô số "thế giới". Bạn - một nhà lữ hành đặc biệt, sẽ du hành khắp thiên hà trên 
 			<strong>Đội Tàu Astral</strong>, cùng với người bạn đồng hành tiếp nối ý chí "khai phá", đi theo con đường đã từng đi của một Aeon 
@@ -275,24 +275,25 @@ osts=false&show_teaser=true&visual=true"></iframe>
 			mới mẻ giữa thế giới này với thế giới kia với vô số điều kỳ lạ. Tất cả những gì bạn muốn biết đều có thể tìm được câu trả lời trong 
 			những chòm sao. Vậy, bạn đã sẵn sàng để bắt đầu cuộc hành trình <strong>khai phá</strong> này chưa?</p>
           </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-6 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
 		  <img src="assets/img/icon\pum.jpg" class="img-fluid" alt="" width="70px" align="left">
             <h4 class="title" style="margin-bottom: 0px"><a href="https://www.pubgmobile.com/vi/home.shtml" target = "_ blank" style = "color: #FFA500">PUBG Mobile</a></h4>
-			<h5 class="title" style="margin-bottom: 15px"><a>UID: 5137076887</a></h5>
+			<h5 class="title" style="margin-bottom: 15px" onclick="copyUID('5137076887')"><a>UID: <span id="uid-pum">5137076887</span></a></h5>
             <p class="description">PUBG Mobile là một <strong>trò chơi điện tử chiến đấu sinh tồn</strong> miễn phí do 
 			LightSpeed & Quantum Studio (một công ty con của Tencent Games) phát triển. PUBG Mobile là một trò chơi
 			di động được chuyển thể từ <strong>PUBG: Battlegrounds.</strong> Trò chơi được hơn 1 tỷ người chơi trên 
 			toàn thế giới lựa chọn. Những trận chiến khốc liệt trong các trận đấu đầy kịch tính, chơi mọi lúc, mọi nơi!</p>
           </div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">  
-            <img src="assets/img/icon\valo.jpg" class="img-fluid" alt="" width="70px" align="left">
-            <h4 class="title" style="margin-bottom: 0px"><a href="https://playvalorant.com/vi-vn/" target = "_ blank">Valorant</a></h4>
-            <h5 class="title" style="margin-bottom: 15px"><a>Riot ID: Ăng Thén Xà Lơ #99999</a></h5>
-            <p class="description">Valorant là một <strong>game bắn súng chiến thuật online theo đội 5 vs 5</strong> và là game FPS 
-			lấy bối cảnh trong một tương lai gần. Người chơi điều khiển các <strong>Đặc vụ (Agent)</strong> đến từ rất nhiều quốc gia và
-			nền văn hóa trên thế giới với các đặc tính và kỹ năng riêng biệt.</p>
+          <div class="col-lg-6 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">  
+            <img src="assets/img/icon\ww.png" class="img-fluid" alt="" width="70px" align="left">
+            <h4 class="title" style="margin-bottom: 0px"><a href="https://wutheringwaves.kurogames.com/en/" target = "_ blank">Wuthering Waves</a></h4>
+			<h5 class="title" style="margin-bottom: 15px" onclick="copyUID('900606759')"><a>UID: <span id="uid-ww">900606759</span> - SEA</a></h5>
+            <p class="description">Wuthering Waves là một <strong>trò chơi hành động nhập vai thế giới mở</strong> với nền tảng câu chuyện phong phú, 
+			được đặt trong một <strong>thế giới hậu tận thế tương lai</strong> sau một thảm họa gọi là <strong>Lament</strong> đã xoá sạch hầu hết nhân loại và khiến cho những sinh vật và quái vật 
+			không rõ nguồn gốc xuất hiện. Tuy nhiên, con người nhanh chóng thích nghi với mối đe dọa và sau thời gian dài, họ đã xây dựng lại nền văn minh. 
+			Câu chuyện theo chân <strong>Rover</strong>, một người mất trí nhớ, đã thức dậy sau một giấc ngủ sâu và bắt đầu khám phá thế giới mới này.</p>
 			</div>
-          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
+<!--          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
             <img src="assets/img/icon\lq.jpg" class="img-fluid" alt="" width="70px" align="left">
             <h4 class="title" style="margin-bottom: 0px"><a href="https://lienquan.garena.vn/" target = "_ blank">Liên Quân Mobile</a></h4>
 			<h5 class="title" style="margin-bottom: 15px"><a>NameTag: 『ᴋᴀᴊᴏsʜᴏʀɪ』</a></h5>
@@ -306,7 +307,7 @@ osts=false&show_teaser=true&visual=true"></iframe>
 			<h5 class="title" style="margin-bottom: 15px"><a>UID: 3064900150168</a></h5>
             <p class="description">Naraka: Bladepoint là một trò chơi video chơi miễn phí Góc nhìn 360 độ, 
 			<strong>thể loại hành động nhập vai và sinh tồn kiểu Battle Royale.</strong> Mỗi trận đấu có tối đa 60 người chơi, họ chiến đấu đến khi chỉ còn 1 người chơi thắng cuộc.</p>
-          </div>
+          </div> --!>
         </div>
 		<div class="title" data-aos="fade-up" data-aos-delay="600">
 		<p style="font-size: 14px; color: #FFA500; position: relative; left: -75px; top: 0px;" align="left"><strong>*Những game thường xuyên hoạt động</strong></p>

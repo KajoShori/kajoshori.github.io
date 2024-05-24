@@ -253,3 +253,22 @@
   new PureCounter();
 
 })()
+        function copyUID(uid) {
+            // Tạo một textarea tạm thời để copy nội dung
+            var tempInput = document.createElement("textarea");
+            tempInput.value = uid;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            // Hiển thị thông báo
+            var notification = document.getElementById("notification");
+            notification.innerText = "Đã copy UID";
+            notification.style.display = "block";
+
+            // Ẩn thông báo sau 2 giây
+            setTimeout(function() {
+                notification.style.display = "none";
+            }, 2000);
+        }
