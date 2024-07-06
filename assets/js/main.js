@@ -272,3 +272,23 @@
                 notification.style.display = "none";
             }, 2000);
         }
+		
+        function copyname(tag) {
+            // Tạo một textarea tạm thời để copy nội dung
+            var tempInput = document.createElement("textarea");
+            tempInput.value = tag;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            // Hiển thị thông báo
+            var notification = document.getElementById("notification");
+            notification.innerText = "Đã copy NameTag";
+            notification.style.display = "block";
+
+            // Ẩn thông báo sau 2 giây
+            setTimeout(function() {
+                notification.style.display = "none";
+            }, 2000);
+        }
