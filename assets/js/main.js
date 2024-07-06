@@ -271,7 +271,7 @@
             setTimeout(function() {
                 notification.style.display = "none";
             }, 2000);
-        }
+        };
 		
         function copyname(tag) {
             // Tạo một textarea tạm thời để copy nội dung
