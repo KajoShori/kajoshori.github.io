@@ -1,58 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta Tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Title -->
-    <title>KajoShori</title>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Css -->
-    <link rel="stylesheet" href="./assets/style.css">
-  
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+  <!-- Title -->
+  <title>KajoShori</title>
 
+  <!-- CSS -->
+  <link rel="stylesheet" href="./assets/style.css" />
+
+  <!-- Icon -->
+  <link href="./assets/img/avt.jpeg" rel="icon">
+  <link href="./assets/img/avt.jpeg" rel="apple-touch-icon">
+
+  <!-- Font Awesome 6.7.2 (all styles) -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512‑PLACEHOLDER_INTEGRITY_HASH"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="header_links">
-                <ul class="nav_links">
-                    <li class="nav_link"><a href="https://kajoshori.github.io">Home</a></li>
-                     <li class="nav_link"><a href="https://kajoshori.github.io/repo">JB Repo</a></li> 
-                </ul>
-            </div>
-        </nav>
-    </header>
-
-    <section class="main">
-        <img src="./assets/imgs/avt.jpeg" alt="" srcset="">
-        <span>Nguyen Thang (KajoShori)</span>
-        <p id="age">Loading...</p>
-        <ul>
-            <li><a target="_blank" href="https://facebook.com/KajoShori"><i class="fab fa-facebook"></i></a></li>
-            <li><a target="_blank" href="https://instagram.com/kajoshori"><i class="fab fa-instagram"></i></a></li>
-            <li><a target="_blank" href="https://twitter.com/KajoShori"><i class="fab fa-twitter"></i></a></li>
-            <li><a target="_blank" href="https://open.spotify.com/user/31yoh46qiruu5r2bne6r4zzo2zvm"><i class="fab fa-spotify"></i></a></li>
+  <header>
+    <nav>
+      <div class="header_links">
+        <ul class="nav_links">
+          <li class="nav_link"><a href="https://kajoshori.github.io">Home</a></li>
+          <li class="nav_link"><a href="https://kajoshori.github.io/repo">JB Repo</a></li>
         </ul>
-    </section>
-    
-<script>
-  const birth = new Date(2004, 10, 10);
-  const today = new Date();
-  let age = today.getFullYear() - birth.getFullYear();
-  if (
-    today.getMonth() < birth.getMonth() ||
-    (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate())
-  ) {
-    age--;
-  }
-  document.getElementById("age").innerHTML = `a.k.a Ang Then Xa Lo, ${age}+`;
-</script>
+      </div>
+    </nav>
+  </header>
 
+  <section>
+    <img src="./assets/imgs/avt.jpeg"/>
+    <h1>Nguyen Thang (KajoShori)</h1>
+    <p id="age">Loading...</p>
+    <ul>
+      <li><a target="_blank" href="https://facebook.com/KajoShori"><i class="fa-brands fa-facebook "></i></a></li>
+      <li><a target="_blank" href="https://instagram.com/kajoshori"><i class="fa-brands fa-instagram "></i></a></li>
+      <li><a target="_blank" href="https://twitter.com/KajoShori"><i class="fa-brands fa-x-twitter "></i></a></li>
+      <li><a target="_blank"href="https://open.spotify.com/user/31yoh46qiruu5r2bne6r4zzo2zvm"><i class="fa-brands fa-spotify "></i></a></li>
+      <li><a target="_blank" href="https://locket.cam/kajoshori"><i class="fa fa-heart "></i></a></li>
+    </ul>
+  </section>
+
+  <!-- JavaScript -->
+  <script>
+    (function () {
+      const birth = new Date(2004, 10, 10);
+      const today = new Date();
+      let age = today.getFullYear() - birth.getFullYear();
+      if (
+        today.getMonth() < birth.getMonth() ||
+        (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate())
+      ) {
+        age--;
+      }
+      document.getElementById("age").textContent =
+        "a.k.a Ang Then Xa Lo, " + age + "+";
+    })();
+  </script>
 </body>
 </html>
-<!--Epic Thanks to Nguyen Xuan Nam (X2NIOS) for this sources-->
