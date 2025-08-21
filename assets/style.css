@@ -80,7 +80,7 @@ section.main {
     text-align: center;
     min-height: 70vh;
     animation: fadeInUp .8s;
-    margin-top: 0vh;
+    margin-top: 5vh;
 }
 
 section.main img {
@@ -132,17 +132,6 @@ section.main ul li a:hover {
     transition: 0.2s all;
     color: #fff;
 }
-
-.scmusic {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: -200px;
-}
-.animationsc {
-  animation: fadeInUp 0.8s ease-out;
-}
-
 
 @keyframes typewriter {
     from {
