@@ -137,7 +137,7 @@ section.main ul li a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -220px;
+  margin-top: -200px;
 }
 .animationsc {
   animation: fadeInUp 0.8s ease-out;
