@@ -83,7 +83,7 @@ section.main {
     margin-top: 5vh;
 }
 
-section.main img {
+.avatar {
     width: 150px;
     height: 150px;
     border-radius: 100%;
@@ -131,6 +131,15 @@ section.main ul li a {
 section.main ul li a:hover {
     transition: 0.2s all;
     color: #fff;
+}
+
+.iconweb {
+  width: 55px;
+  border-radius: 6px; /* tuỳ chọn nếu muốn bo góc */
+  object-fit: contain;
+}
+.socialcredit {
+  margin-top: -30px;  /* chỉnh số âm nhiều hay ít tuỳ ý */
 }
 
 @keyframes typewriter {
