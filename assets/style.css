@@ -131,15 +131,21 @@ section.main ul li a {
 section.main ul li a:hover {
     transition: 0.2s all;
     color: #fff;
+    transform: scale(1.05);
 }
 
 .iconweb {
   width: 55px;
-  border-radius: 6px; /* tuỳ chọn nếu muốn bo góc */
+  border-radius: 6px;
   object-fit: contain;
 }
+
+.iconweb:hover {
+  filter: brightness(2);
+}
+
 .socialcredit {
-  margin-top: -30px;  /* chỉnh số âm nhiều hay ít tuỳ ý */
+  margin-top: -30px;
 }
 
 @keyframes typewriter {
