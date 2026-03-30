@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +9,9 @@
     <link rel="icon" type="image/jpeg" href="./assets/imgs/avt.jpeg">
 
     <link rel="stylesheet" href="./assets/style.css">
-  
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512‑PLACEHOLDER_INTEGRITY_HASH"
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-    />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512‑PLACEHOLDER_INTEGRITY_HASH" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -23,7 +19,7 @@
         <nav>
             <div class="header_links">
                 <ul class="nav_links">
-<!---                    <li class="nav_link"><a href="https://kajoshori.github.io">Home</a></li>
+                    <!---                    <li class="nav_link"><a href="https://kajoshori.github.io">Home</a></li>
                     <li class="nav_link"><a href="https://kajoshori.github.io/repo">JB Repo</a></li> --->
                 </ul>
             </div>
@@ -36,42 +32,58 @@
         <p id="age">Loading...</p>
         <ul>
             <li><a target="_blank" href="https://facebook.com/KajoShori"><i class="fa-brands fa-facebook"></i></a></li>
-            <li><a target="_blank" href="https://instagram.com/kajoshori"><i class="fa-brands fa-instagram"></i></a></li>
+            <li><a target="_blank" href="https://instagram.com/kajoshori"><i class="fa-brands fa-instagram"></i></a>
+            </li>
             <li><a target="_blank" href="https://twitter.com/KajoShori"><i class="fa-brands fa-x-twitter"></i></a></li>
-            <li><a target="_blank"href="https://open.spotify.com/user/31yoh46qiruu5r2bne6r4zzo2zvm"><i class="fa-brands fa-spotify"></i></a></li>
+            <li><a target="_blank" href="https://open.spotify.com/user/31yoh46qiruu5r2bne6r4zzo2zvm"><i
+                        class="fa-brands fa-spotify"></i></a></li>
             <li><a target="_blank" href="https://locket.cam/kajoshori"><i class="fa fa-heart"></i></a></li>
-<!---            <li><a target="_blank" href="https://steamcommunity.com/profiles/76561199135563864/"><i class="fa-brands fa-steam-symbol"></i></a></li> --->
-            <li><a target="_blank" href="https://discord.com/users/453360233792798730/"><i class="fa-brands fa-discord"></i></a></li>
+            <li><a target="_blank" href="https://discord.com/users/453360233792798730/"><i
+                        class="fa-brands fa-discord"></i></a></li>
         </ul>
         <ul class="socialcredit">
-            <li><a target="_blank" href="https://www.douyin.com/user/MS4wLjABAAAAWNvXlhBljM8J7fZWwYXeOh5MuPjXlMM_3K5Yj73JR0U"><i class="fab fa-tiktok"></i></a></li>
+            <li><a target="_blank"
+                    href="https://www.douyin.com/user/MS4wLjABAAAAWNvXlhBljM8J7fZWwYXeOh5MuPjXlMM_3K5Yj73JR0U"><i
+                        class="fab fa-tiktok"></i></a></li>
             <li><a target="_blank" href="https://weibo.com/u/7558855956"><i class="fab fa-weibo"></i></i></a></li>
-            <li><a target="_blank" href="weixin://dl/chat?KajoShorii"><i class="fab fa-weixin"></i></a></li>
+            <li><a href="#" onclick="document.getElementById('wechat-modal').style.display='flex'; return false;"><i
+                        class="fab fa-weixin"></i></a></li>
             <li>
-            <a target="_blank" href="https://www.xiaohongshu.com/user/profile/651c52a40000000024014d2f">
-                <img src="./assets/imgs/xiaohongshu.png" class="iconweb">
-            </a>
+                <a target="_blank" href="https://www.xiaohongshu.com/user/profile/651c52a40000000024014d2f">
+                    <img src="./assets/imgs/xiaohongshu.png" class="iconweb">
+                </a>
             </li>
             <li>
-            <a target="_blank" href="https://b23.tv/UW4dvU4">
-                <img src="./assets/imgs/bilibili.png" class="iconweb">
-            </a>
+                <a target="_blank" href="https://b23.tv/UW4dvU4">
+                    <img src="./assets/imgs/bilibili.png" class="iconweb">
+                </a>
             </li>
         </ul>
     </section>
-    
-<script>
-  const birth = new Date(2004, 10, 10);
-  const today = new Date();
-  let age = today.getFullYear() - birth.getFullYear();
-  if (
-    today.getMonth() < birth.getMonth() ||
-    (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate())
-  ) {
-    age--;
-  }
-  document.getElementById("age").innerHTML = `Hai Phong, Vietnam | ${age}+`;
-</script>
+
+    <!-- WeChat QR Modal -->
+    <div id="wechat-modal" class="modal-overlay" onclick="if(event.target===this)this.style.display='none'">
+        <div class="modal-box">
+            <button class="modal-close"
+                onclick="document.getElementById('wechat-modal').style.display='none'">&times;</button>
+            <img src="./assets/imgs/wechatqr.png" alt="WeChat QR Code" class="qr-image">
+            <p class="modal-text">Scan to add me on WeChat (微信)</p>
+        </div>
+    </div>
+
+    <script>
+        const birth = new Date(2004, 10, 10);
+        const today = new Date();
+        let age = today.getFullYear() - birth.getFullYear();
+        if (
+            today.getMonth() < birth.getMonth() ||
+            (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate())
+        ) {
+            age--;
+        }
+        document.getElementById("age").innerHTML = `Hai Phong, Vietnam | ${age}+`;
+    </script>
 
 </body>
+
 </html>
