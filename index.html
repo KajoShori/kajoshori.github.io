@@ -8,10 +8,11 @@
     <title>KajoShori</title>
     <link rel="icon" type="image/jpeg" href="./assets/imgs/avt.jpeg">
 
-    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512‑PLACEHOLDER_INTEGRITY_HASH" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script defer src="./assets/js/script.js"></script>
 </head>
 
 <body>
@@ -59,6 +60,30 @@
                 </a>
             </li>
         </ul>
+
+        <!-- Custom Spotify-style Music Player -->
+        <div class="music-player" id="musicPlayer">
+            <div class="player-left">
+                <img src="./assets/music/daobuochk1999.jpg" alt="Album Cover" class="player-album-art">
+            </div>
+            <div class="player-center">
+                <span class="player-title"><strong>漫步香港1999</strong></span>
+                <span class="player-artist">布鲁昔BlueC</span>
+                <div class="player-controls-row">
+                    <span class="player-time" id="playerCurrentTime">0:00</span>
+                    <div class="player-progress-bar" id="progressBarContainer">
+                        <div class="player-progress" id="playerProgress"></div>
+                    </div>
+                    <span class="player-time" id="playerDuration">0:00</span>
+                </div>
+            </div>
+            <div class="player-right">
+                <button class="player-play-btn" id="playerPlayBtn" aria-label="Play/Pause">
+                    <i class="fas fa-play" id="playerPlayIcon"></i>
+                </button>
+            </div>
+            <audio id="audioPlayer" preload="metadata" src="./assets/music/daobuochk1999.mp3"></audio>
+        </div>
     </section>
 
     <!-- WeChat QR Modal -->
@@ -70,20 +95,6 @@
             <p class="modal-text">Scan to add me on WeChat (微信)</p>
         </div>
     </div>
-
-    <script>
-        const birth = new Date(2004, 10, 10);
-        const today = new Date();
-        let age = today.getFullYear() - birth.getFullYear();
-        if (
-            today.getMonth() < birth.getMonth() ||
-            (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate())
-        ) {
-            age--;
-        }
-        document.getElementById("age").innerHTML = `Hai Phong, Vietnam | ${age}+`;
-    </script>
-
 </body>
 
 </html>
