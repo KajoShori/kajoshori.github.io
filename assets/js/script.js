@@ -1,13 +1,8 @@
 // ==================== Age Calculation ====================
-const birth = new Date(2004, 10, 10);
-const today = new Date();
-let age = today.getFullYear() - birth.getFullYear();
-if (
-    today.getMonth() < birth.getMonth() ||
-    (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate())
-) {
-    age--;
-}
+const birthYear = 2004;
+const currentYear = new Date().getFullYear();
+const age = currentYear - birthYear;
+
 document.getElementById("age").innerHTML = `Hai Phong, Vietnam | ${age}+`;
 
 // ==================== Music Player ====================
