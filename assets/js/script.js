@@ -55,7 +55,7 @@ function loadTrack(index) {
     audio.src = track.src;
     albumArt.src = track.cover;
     titleEl.innerHTML = `<span class="scroll-text"><strong>${track.title}</strong></span>`;
-    artistEl.textContent = track.artist;
+    artistEl.innerHTML = `<span class="scroll-text">${track.artist}</span>`;
     currentTimeEl.textContent = '0:00';
     durationEl.textContent = '0:00';
     progress.style.width = '0%';
@@ -68,15 +68,18 @@ function loadTrack(index) {
 
     // Check overflow after render and enable marquee if needed
     titleEl.classList.remove('scrolling');
+    artistEl.classList.remove('scrolling');
     requestAnimationFrame(() => {
-        const scrollText = titleEl.querySelector('.scroll-text');
-        if (scrollText && scrollText.scrollWidth > titleEl.clientWidth) {
-            const overflow = scrollText.scrollWidth - titleEl.clientWidth;
-            const duration = Math.max(6, overflow / 15); // speed: 15px/s
-            titleEl.style.setProperty('--scroll-distance', `-${overflow}px`);
-            titleEl.style.setProperty('--marquee-duration', `${duration}s`);
-            titleEl.classList.add('scrolling');
-        }
+        [titleEl, artistEl].forEach(el => {
+            const scrollText = el.querySelector('.scroll-text');
+            if (scrollText && scrollText.scrollWidth > el.clientWidth) {
+                const overflow = scrollText.scrollWidth - el.clientWidth;
+                const duration = Math.max(6, overflow / 15);
+                el.style.setProperty('--scroll-distance', `-${overflow}px`);
+                el.style.setProperty('--marquee-duration', `${duration}s`);
+                el.classList.add('scrolling');
+            }
+        });
     });
 }
 

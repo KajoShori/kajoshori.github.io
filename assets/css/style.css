@@ -398,8 +398,15 @@ section.main ul li a:hover {
   color: rgba(255, 255, 255, 0.7);
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
   line-height: 1.4;
+}
+
+.player-artist .scroll-text {
+  display: inline-block;
+}
+
+.player-artist.scrolling .scroll-text {
+  animation: marqueeScroll var(--marquee-duration, 10s) linear infinite;
 }
 
 /* Progress bar row */
