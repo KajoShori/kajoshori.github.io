@@ -185,3 +185,18 @@ document.addEventListener('touchmove', (e) => {
 document.addEventListener('touchend', () => {
     isDragging = false;
 });
+
+// ==================== Click-to-Start Overlay ====================
+const startOverlay = document.getElementById('startOverlay');
+const bgmAudio = document.getElementById('bgmAudio');
+
+startOverlay.addEventListener('click', () => {
+    startOverlay.classList.add('hidden');
+    document.body.classList.add('content-loaded');
+    bgmAudio.play();
+
+    // Remove overlay from DOM after fade-out transition
+    startOverlay.addEventListener('transitionend', () => {
+        startOverlay.remove();
+    });
+});

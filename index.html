@@ -100,6 +100,20 @@
         </div>
     </section>
 
+    <!-- Click-to-Start Overlay -->
+    <div id="startOverlay" class="start-overlay">
+        <div class="overlay-content">
+            <div class="overlay-icon-wrapper">
+                <span class="click-ripple"></span>
+                <i class="fa-solid fa-hand-pointer overlay-icon"></i>
+            </div>
+            <p>Click anywhere to enter</p>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgmAudio" src="./assets/music/bgm.m4a" loop preload="auto"></audio>
+
     <!-- WeChat QR Modal -->
     <div id="wechat-modal" class="modal-overlay" onclick="if(event.target===this)this.style.display='none'">
         <div class="modal-box">
