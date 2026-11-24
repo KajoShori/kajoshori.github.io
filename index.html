@@ -9,17 +9,25 @@
   <meta name="author" content="KajoShori" />
   <meta name="theme-color" content="#060913" />
 
-  <link rel="icon" type="image/jpeg" href="./assets/imgs/avt.jpeg" />
+  <link rel="icon" type="image/jpeg" href="./assets/imgs/avt.jpg" />
+
+  <link rel="preload" as="image" href="./assets/imgs/bg.jpg" fetchpriority="high" />
+  <link rel="preload" as="image" href="./assets/imgs/avt.jpg" fetchpriority="high" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" as="style"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </noscript>
 
   <link rel="stylesheet" href="./assets/css/style.css" />
   <script defer src="./assets/js/script.js"></script>
@@ -40,7 +48,8 @@
               <div class="profile-fixed-top">
                 <!-- Banner -->
                 <div class="profile-banner">
-                  <img id="banner-image" src="./assets/imgs/bg.jpg" alt="Ảnh bìa hồ sơ" />
+                  <img id="banner-image" src="./assets/imgs/bg.jpg" alt="Ảnh bìa hồ sơ" fetchpriority="high"
+                    decoding="async" />
                   <div class="banner-glow"></div>
                 </div>
 
@@ -48,7 +57,7 @@
                 <div class="profile-header">
                   <div class="avatar-wrap">
                     <img id="avatar-image" class="avatar-image avatar-glow" src="./assets/imgs/avt.jpg"
-                      alt="Ảnh đại diện" />
+                      alt="Ảnh đại diện" fetchpriority="high" decoding="async" />
                     <span id="status-orb" class="status-orb online" aria-label="Trạng thái"></span>
                   </div>
 
@@ -262,7 +271,8 @@
                       <p class="showcase-quote">Kiếm đã rút khỏi vỏ, chỉ chờ bằng hữu cùng xuất chinh!</p>
                     </div>
                     <div class="showcase-art-wrap" aria-hidden="true">
-                      <img class="showcase-art" src="./assets/imgs/avt2.jpg?v=2" alt="Featured artwork" />
+                      <img class="showcase-art" src="./assets/imgs/avt2.jpg" alt="Featured artwork" loading="lazy"
+                        decoding="async" />
                       <div class="showcase-art-overlay"></div>
                     </div>
                   </div>
@@ -273,7 +283,8 @@
                   <div class="apps-grid">
                     <div class="app-card game-card" data-copy="802495170" title="Click để copy UID: 802495170">
                       <div class="app-icon-wrap game-icon-wrap">
-                        <img src="./assets/imgs/games/hsr.png" alt="Honkai: Star Rail" />
+                        <img src="./assets/imgs/games/hsr.png" alt="Honkai: Star Rail" loading="lazy"
+                          decoding="async" />
                       </div>
                       <div class="app-text">
                         <strong class="app-title">Honkai: Star Rail</strong>
@@ -284,7 +295,8 @@
 
                     <div class="app-card game-card" data-copy="1309409201" title="Click để copy UID: 1309409201">
                       <div class="app-icon-wrap game-icon-wrap">
-                        <img src="./assets/imgs/games/zzz.png" alt="Zenless Zone Zero" />
+                        <img src="./assets/imgs/games/zzz.png" alt="Zenless Zone Zero" loading="lazy"
+                          decoding="async" />
                       </div>
                       <div class="app-text">
                         <strong class="app-title">Zenless Zone Zero</strong>
@@ -295,7 +307,7 @@
 
                     <div class="app-card game-card" data-copy="905689653" title="Click để copy UID: 905689653">
                       <div class="app-icon-wrap game-icon-wrap">
-                        <img src="./assets/imgs/games/wuwa.png" alt="Wuthering Waves" />
+                        <img src="./assets/imgs/games/wuwa.png" alt="Wuthering Waves" loading="lazy" decoding="async" />
                       </div>
                       <div class="app-text">
                         <strong class="app-title">Wuthering Waves</strong>
@@ -307,7 +319,7 @@
                     <div class="app-card game-card" data-copy="『KajoShorii』"
                       title="Click để copy tên ingame: 『KajoShorii』">
                       <div class="app-icon-wrap game-icon-wrap">
-                        <img src="./assets/imgs/games/aov.png" alt="Liên Quân Mobile" />
+                        <img src="./assets/imgs/games/aov.png" alt="Liên Quân Mobile" loading="lazy" decoding="async" />
                       </div>
                       <div class="app-text">
                         <strong class="app-title">Liên Quân Mobile</strong>
@@ -326,7 +338,7 @@
                     <a class="app-card game-link-card" href="https://s.team/p/gjbt-pbhm/mhpbvtrk" target="_blank"
                       rel="noopener noreferrer" title="Mở trang Counter-Strike 2 trên Steam">
                       <div class="app-icon-wrap game-icon-wrap">
-                        <img src="./assets/imgs/games/cs2.png" alt="Counter-Strike 2" />
+                        <img src="./assets/imgs/games/cs2.png" alt="Counter-Strike 2" loading="lazy" decoding="async" />
                       </div>
                       <div class="app-text">
                         <strong class="app-title">Counter-Strike 2</strong>
@@ -352,9 +364,9 @@
           <section class="music-dock" aria-label="Trình phát nhạc"
             title="Space: phát/dừng · ↑/↓: âm lượng ±10% · ←/→: chuyển bài">
             <output id="music-volume-notice" class="music-volume-notice" aria-live="polite" aria-atomic="true"></output>
-            <audio id="audioPlayer" preload="metadata"></audio>
+            <audio id="audioPlayer" preload="none"></audio>
             <img class="music-cover" id="playerAlbumArt" src="./assets/music/daobuochk1999.jpg"
-              alt="Bìa bài nhạc đang phát" />
+              alt="Bìa bài nhạc đang phát" decoding="async" />
             <div class="music-meta">
               <strong id="playerTitle">漫步香港1999 [Mạn Bộ Hương Cảng 1999]</strong>
               <small id="playerArtist">布鲁昔BlueC</small>
@@ -400,7 +412,7 @@
     <div class="modal-box">
       <button class="modal-close"
         onclick="document.getElementById('wechat-modal').style.display='none'">&times;</button>
-      <img src="./assets/imgs/wechatqr.png" alt="WeChat QR Code" class="qr-image" />
+      <img src="./assets/imgs/wechatqr.png" alt="WeChat QR Code" class="qr-image" loading="lazy" decoding="async" />
       <p class="modal-text">Scan to add me on WeChat (微信)</p>
     </div>
   </div>
