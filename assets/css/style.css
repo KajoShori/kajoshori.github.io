@@ -250,6 +250,9 @@ a {
   min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior-y: contain;
   padding-bottom: 12px;
 }
 
@@ -511,15 +514,12 @@ a {
 .toggle-icon {
   width: 16px;
   height: 16px;
-}
-
-.panel-toggle-btn.is-collapsed #toggleChevron {
-  transform: rotate(180deg);
-}
-
-#toggleChevron {
   transform-origin: center;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.panel-toggle-btn.is-collapsed .toggle-icon {
+  transform: rotate(180deg);
 }
 
 /* Badge Tags List */
@@ -712,30 +712,29 @@ a {
   flex-shrink: 0;
 }
 
-.panel-close-mobile {
+.mobile-panel-back-btn {
   display: none;
-  margin-left: auto;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #cbd5e1;
-  width: 30px;
-  height: 30px;
-  border-radius: 6px;
-  cursor: pointer;
   align-items: center;
   justify-content: center;
+  width: 28px;
+  height: 28px;
   padding: 0;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: #a7acc1;
+  font-size: 13px;
+  cursor: pointer;
   transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-right: 6px;
 }
 
-.panel-close-mobile:hover {
-  background: rgba(255, 255, 255, 0.15);
+.mobile-panel-back-btn:hover,
+.mobile-panel-back-btn:active {
   color: #fff;
-}
-
-.panel-close-mobile svg {
-  width: 16px;
-  height: 16px;
+  background: rgba(88, 101, 242, 0.25);
+  border-color: rgba(88, 101, 242, 0.45);
 }
 
 .nav-tab-btn {
@@ -781,7 +780,11 @@ a {
   min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior-y: contain;
   padding-right: 6px;
+  padding-bottom: 24px;
 }
 
 .tab-content.active {
@@ -901,7 +904,7 @@ a {
 
 .apps-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 10px;
 }
 
@@ -1338,85 +1341,132 @@ a {
 
 /* ==================== Responsive ==================== */
 @media (max-width: 1050px) {
+  .screen {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    padding: 16px 12px;
+  }
 
   .profile-layout,
   .profile-layout:has(.profile-console.collapsed) {
     width: 100%;
     max-width: 480px;
+    height: 100%;
+    margin: 0 auto;
   }
 
   .profile-stack {
-    height: auto;
-    max-height: none;
+    width: 100%;
+    height: 100%;
+    max-height: calc(100dvh - 32px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 0;
   }
 
   .profile-console {
-    height: min(720px, 86dvh);
-    max-height: 86dvh;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex: 1 1 0;
+    min-height: 0;
+    display: flex;
     flex-direction: column;
     overflow: hidden;
+    transform: none !important;
+  }
+
+  .profile-console::after {
+    display: none;
   }
 
   .profile-left-col {
     width: 100%;
     height: 100%;
-    border-right: none;
+    min-height: 0;
+    flex: 1 1 0;
     display: flex;
     flex-direction: column;
-    min-height: 0;
-    flex: 1 1 auto;
     overflow: hidden;
+    border-right: none;
+  }
+
+  .profile-fixed-top {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   .profile-scroll-body {
-    flex: 1 1 auto;
+    flex: 1 1 0;
     min-height: 0;
     overflow-y: auto;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
     touch-action: pan-y;
+    overscroll-behavior-y: contain;
+    padding-bottom: 16px;
   }
 
-  /* When expanded on mobile, switch between left profile and right panel or let them flow cleanly */
+  /* Slide-over Right Panel on Mobile */
   .right-panel-container {
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-    flex: 1 1 auto;
     position: absolute;
     inset: 0;
-    z-index: 20;
-    background: rgba(13, 17, 30, 0.96);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    z-index: 30;
+    background: rgba(11, 14, 26, 0.96);
+    backdrop-filter: blur(28px) saturate(150%);
+    -webkit-backdrop-filter: blur(28px) saturate(150%);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(0);
     opacity: 1;
-    visibility: visible;
     pointer-events: auto;
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.25s ease;
   }
 
   .right-panel-container.collapsed {
-    max-width: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
+    transform: translateX(100%) !important;
     opacity: 0 !important;
-    visibility: hidden !important;
     pointer-events: none !important;
-    transform: translateY(10px);
+    visibility: hidden;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .mobile-panel-back-btn {
+    display: inline-flex;
   }
 
   .right-widgets-inner {
     padding: 16px;
     height: 100%;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
 
-  .panel-close-mobile {
-    display: inline-flex;
+  .widgets-nav-tabs {
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    gap: 12px;
+  }
+
+  .tab-content {
+    flex: 1 1 0;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+    overscroll-behavior-y: contain;
+    padding-right: 4px;
+    padding-bottom: 24px;
   }
 }
 
@@ -1425,39 +1475,55 @@ a {
     padding: 10px 8px;
   }
 
-  .profile-console {
-    height: min(700px, 88dvh);
-    max-height: 88dvh;
+  .profile-stack {
+    max-height: calc(100dvh - 20px);
+    gap: 8px;
   }
 
   .profile-banner {
-    height: 105px;
+    height: 100px;
   }
 
   .avatar-wrap {
-    width: 76px;
-    height: 76px;
+    width: 72px;
+    height: 72px;
   }
 
   .profile-header {
-    margin-top: -38px;
-    padding: 0 14px 10px;
+    margin-top: -36px;
+    padding: 0 14px 8px;
+  }
+
+  .sync-clock {
+    font-size: 10px;
+    padding: 3px 8px;
   }
 
   .identity-section {
-    padding: 0 14px 10px;
+    padding: 0 14px 8px;
   }
 
   .identity-section h1 {
     font-size: 20px;
   }
 
+  .panel-toggle-btn {
+    width: 34px;
+    height: 34px;
+  }
+
   .badge-list {
-    padding: 0 14px 10px;
+    padding: 0 14px 8px;
+    gap: 5px;
+  }
+
+  .tag-badge {
+    font-size: 10.5px;
+    padding: 2px 7px;
   }
 
   .col-divider {
-    margin: 0 14px 10px;
+    margin: 0 14px 8px;
   }
 
   .info-section {
@@ -1466,14 +1532,20 @@ a {
 
   .connections-list {
     grid-template-columns: 1fr;
+    gap: 6px;
   }
 
   .conn-item.conn-item-wide {
     grid-column: span 1;
   }
 
-  .music-dock {
+  .conn-item {
     padding: 8px 10px;
+  }
+
+  .music-dock {
+    flex: 0 0 52px;
+    padding: 7px 10px;
     gap: 8px;
   }
 
@@ -1483,11 +1555,48 @@ a {
     flex: 0 0 32px;
   }
 
+  .music-meta strong {
+    font-size: 11px;
+  }
+
+  .music-meta small {
+    font-size: 9px;
+  }
+
+  .music-controls button {
+    width: 26px;
+    height: 28px;
+  }
+
+  .featured-showcase-card {
+    padding: 12px 14px;
+    min-height: 125px;
+    margin-bottom: 12px;
+  }
+
+  .showcase-info {
+    max-width: 62%;
+    gap: 4px;
+  }
+
+  .showcase-name {
+    font-size: 18px;
+  }
+
+  .showcase-quote {
+    font-size: 11px;
+  }
+
   .showcase-art-wrap {
-    width: 130px;
+    width: 120px;
   }
 
   .apps-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+  }
+
+  .app-card {
+    padding: 9px 11px;
   }
 }

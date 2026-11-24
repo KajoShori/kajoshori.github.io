@@ -52,6 +52,7 @@ function resetCardPointer() {
 
 if (interactiveCard) {
   document.addEventListener('pointermove', (event) => {
+    if (event.pointerType === 'touch') return;
     if (!interactiveCard.contains(event.target)) {
       resetCardPointer();
       return;
@@ -110,7 +111,7 @@ startProfileNameTyping();
 
 // ==================== Panel Expand / Collapse ====================
 const panelToggleBtn = document.getElementById('panelToggleBtn');
-const panelCloseMobileBtn = document.getElementById('panelCloseMobileBtn');
+const mobileBackBtn = document.getElementById('mobileBackBtn');
 const rightPanelContainer = document.getElementById('rightPanelContainer');
 
 function toggleRightPanel() {
@@ -119,6 +120,11 @@ function toggleRightPanel() {
   interactiveCard.classList.toggle('collapsed', !isCollapsed);
   rightPanelContainer.classList.toggle('collapsed', !isCollapsed);
   panelToggleBtn?.classList.toggle('is-collapsed', !isCollapsed);
+  panelToggleBtn?.setAttribute('aria-expanded', String(isCollapsed));
+  if (panelToggleBtn) {
+    panelToggleBtn.setAttribute('title', isCollapsed ? 'Thu gọn bảng (F)' : 'Mở rộng bảng (F)');
+    panelToggleBtn.setAttribute('aria-label', isCollapsed ? 'Thu gọn bảng' : 'Mở rộng bảng');
+  }
   if (isCollapsed) {
     rightPanelContainer.removeAttribute('inert');
   } else {
@@ -127,7 +133,7 @@ function toggleRightPanel() {
 }
 
 if (panelToggleBtn) panelToggleBtn.addEventListener('click', toggleRightPanel);
-if (panelCloseMobileBtn) panelCloseMobileBtn.addEventListener('click', toggleRightPanel);
+if (mobileBackBtn) mobileBackBtn.addEventListener('click', toggleRightPanel);
 
 // Shortcut: 'F' key toggles panel
 document.addEventListener('keydown', (event) => {
