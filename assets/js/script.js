@@ -1,202 +1,413 @@
-// ==================== Age Calculation ====================
+// ==================== Age & Info ====================
 const birthYear = 2004;
 const currentYear = new Date().getFullYear();
 const age = currentYear - birthYear;
 
-document.getElementById("age").innerHTML = `Hai Phong, Vietnam | ${age}+`;
+const ageText = document.getElementById('age-text');
+if (ageText) ageText.textContent = `Hai Phong, Vietnam • ${age}+`;
 
-// ==================== Music Player ====================
-const playlist = [
-    {
-        title: '漫步香港1999 [Mạn Bộ Hương Cảng 1999]',
-        artist: '布鲁昔BlueC',
-        src: './assets/music/daobuochk1999.mp3',
-        cover: './assets/music/daobuochk1999.jpg'
-    },
-    {
-        title: '蘭亭序 [Lan Đình Tự]',
-        artist: 'Jay Chou (周杰伦) [Châu Kiệt Luân]',
-        src: './assets/music/landinhtu.mp3',
-        cover: './assets/music/JayChouCapricorn.jpg'
-    },
-    {
-        title: '误把栾花当桂花 [Ngộ Loan Hoa Đương Quế Hoa]',
-        artist: 'YN-K',
-        src: './assets/music/lahoaque.mp3',
-        cover: './assets/music/lahoaque.jpg'
-    },
-    {
-        title: '昨夜风今宵月 [Tạc Dạ Phong Kim Tiêu Nguyệt]',
-        artist: '庄淇玟29 [Trang Kỳ Văn 29]',
-        src: './assets/music/trangdemnay.mp3',
-        cover: './assets/music/trangdemnay.jpg'
+// ==================== Live Vietnam Clock ====================
+function updateVietnamClock() {
+  const clockEl = document.getElementById('last-updated');
+  if (!clockEl) return;
+  const now = new Date();
+  const timeStr = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Ho_Chi_Minh',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  }).format(now);
+  clockEl.textContent = `VN ${timeStr}`;
+}
+updateVietnamClock();
+setInterval(updateVietnamClock, 1000);
+
+// ==================== 3D Perspective Tilt & Pointer Glow ====================
+const interactiveCard = document.getElementById('profileConsole');
+
+function updateCardPointer(event) {
+  if (!interactiveCard) return;
+  const rect = interactiveCard.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+  const px = x / rect.width;
+  const py = y / rect.height;
+  const tiltY = (px - 0.5) * 3.5;
+  const tiltX = (0.5 - py) * 3.5;
+
+  interactiveCard.style.setProperty('--glow-x', `${(px * 100).toFixed(1)}%`);
+  interactiveCard.style.setProperty('--glow-y', `${(py * 100).toFixed(1)}%`);
+  interactiveCard.style.setProperty('--tilt-x', `${tiltX.toFixed(2)}deg`);
+  interactiveCard.style.setProperty('--tilt-y', `${tiltY.toFixed(2)}deg`);
+  interactiveCard.classList.add('interactive-hover');
+}
+
+function resetCardPointer() {
+  if (!interactiveCard) return;
+  interactiveCard.classList.remove('interactive-hover');
+  interactiveCard.style.setProperty('--tilt-x', '0deg');
+  interactiveCard.style.setProperty('--tilt-y', '0deg');
+}
+
+if (interactiveCard) {
+  document.addEventListener('pointermove', (event) => {
+    if (!interactiveCard.contains(event.target)) {
+      resetCardPointer();
+      return;
     }
+    updateCardPointer(event);
+  });
+
+  interactiveCard.addEventListener('pointerleave', resetCardPointer);
+}
+
+// ==================== Profile Typing Name Cycle ====================
+const profileTypingWords = [
+  'Nguyen Thang',
+  'KajoShori',
+  'Developer & Student',
 ];
 
-let currentTrack = 0;
+function startProfileNameTyping() {
+  const target = document.getElementById('profile-typing-name');
+  if (!target) return;
 
-const audio = document.getElementById('audioPlayer');
-const playBtn = document.getElementById('playerPlayBtn');
-const playIcon = document.getElementById('playerPlayIcon');
-const progress = document.getElementById('playerProgress');
-const progressBar = document.getElementById('progressBarContainer');
-const currentTimeEl = document.getElementById('playerCurrentTime');
-const durationEl = document.getElementById('playerDuration');
-const albumArt = document.getElementById('playerAlbumArt');
-const titleEl = document.getElementById('playerTitle');
-const artistEl = document.getElementById('playerArtist');
-const prevBtn = document.getElementById('playerPrevBtn');
-const nextBtn = document.getElementById('playerNextBtn');
-const prevTrackEl = document.getElementById('playerPrevTrack');
-const nextTrackEl = document.getElementById('playerNextTrack');
+  let wordIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
 
-function loadTrack(index) {
-    const track = playlist[index];
-    audio.src = track.src;
-    albumArt.src = track.cover;
-    titleEl.innerHTML = `<span class="scroll-text"><strong>${track.title}</strong></span>`;
-    artistEl.innerHTML = `<span class="scroll-text">${track.artist}</span>`;
-    currentTimeEl.textContent = '0:00';
-    durationEl.textContent = '0:00';
-    progress.style.width = '0%';
+  const tick = () => {
+    const word = profileTypingWords[wordIndex];
+    target.textContent = word.slice(0, charIndex);
 
-    // Update prev/next queue info
-    const prevIndex = (index - 1 + playlist.length) % playlist.length;
-    const nextIndex = (index + 1) % playlist.length;
-    prevTrackEl.textContent = `Trước đó: ${playlist[prevIndex].title} - ${playlist[prevIndex].artist}`;
-    nextTrackEl.textContent = `Tiếp theo: ${playlist[nextIndex].title} - ${playlist[nextIndex].artist}`;
+    if (!deleting && charIndex < word.length) {
+      charIndex += 1;
+      setTimeout(tick, 90);
+      return;
+    }
 
-    // Check overflow after render and enable marquee if needed
-    titleEl.classList.remove('scrolling');
-    artistEl.classList.remove('scrolling');
-    requestAnimationFrame(() => {
-        [titleEl, artistEl].forEach(el => {
-            const scrollText = el.querySelector('.scroll-text');
-            if (scrollText && scrollText.scrollWidth > el.clientWidth) {
-                const overflow = scrollText.scrollWidth - el.clientWidth;
-                const duration = Math.max(6, overflow / 15);
-                el.style.setProperty('--scroll-distance', `-${overflow}px`);
-                el.style.setProperty('--marquee-duration', `${duration}s`);
-                el.classList.add('scrolling');
-            }
-        });
+    if (!deleting) {
+      deleting = true;
+      setTimeout(tick, wordIndex === 0 ? 3000 : 1500);
+      return;
+    }
+
+    if (charIndex > 0) {
+      charIndex -= 1;
+      setTimeout(tick, 50);
+      return;
+    }
+
+    deleting = false;
+    wordIndex = (wordIndex + 1) % profileTypingWords.length;
+    setTimeout(tick, 300);
+  };
+
+  tick();
+}
+startProfileNameTyping();
+
+// ==================== Panel Expand / Collapse ====================
+const panelToggleBtn = document.getElementById('panelToggleBtn');
+const rightPanelContainer = document.getElementById('rightPanelContainer');
+
+function toggleRightPanel() {
+  if (!interactiveCard || !rightPanelContainer) return;
+  const isCollapsed = interactiveCard.classList.contains('collapsed');
+  interactiveCard.classList.toggle('collapsed', !isCollapsed);
+  rightPanelContainer.classList.toggle('collapsed', !isCollapsed);
+  panelToggleBtn?.classList.toggle('is-collapsed', !isCollapsed);
+  if (isCollapsed) {
+    rightPanelContainer.removeAttribute('inert');
+  } else {
+    rightPanelContainer.setAttribute('inert', '');
+  }
+}
+
+if (panelToggleBtn) panelToggleBtn.addEventListener('click', toggleRightPanel);
+
+// Shortcut: 'F' key toggles panel
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'f' || event.key === 'F') {
+    if (event.target.tagName !== 'INPUT' && event.target.tagName !== 'TEXTAREA') {
+      event.preventDefault();
+      toggleRightPanel();
+    }
+  }
+});
+
+// ==================== Game Card Click to Copy ====================
+function initGameCardCopy() {
+  const gameCards = document.querySelectorAll('.game-card');
+  gameCards.forEach((card) => {
+    card.addEventListener('click', async () => {
+      const textToCopy = card.getAttribute('data-copy');
+      if (!textToCopy) return;
+
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+      } catch (err) {
+        // Fallback for older browsers/contexts
+        const textarea = document.createElement('textarea');
+        textarea.value = textToCopy;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+
+      // Visual feedback
+      const badge = card.querySelector('.copy-badge');
+      const originalBadgeHtml = badge ? badge.innerHTML : '';
+      card.classList.add('copied');
+      if (badge) badge.innerHTML = '<i class="fa-solid fa-check"></i>';
+
+      // Floating toast notice (reuse music-volume-notice style)
+      const notice = document.getElementById('music-volume-notice');
+      if (notice) {
+        notice.textContent = `Đã sao chép: ${textToCopy}`;
+        notice.classList.add('is-visible');
+        clearTimeout(window._copyNoticeTimer);
+        window._copyNoticeTimer = setTimeout(() => {
+          notice.classList.remove('is-visible');
+        }, 1800);
+      }
+
+      setTimeout(() => {
+        card.classList.remove('copied');
+        if (badge) badge.innerHTML = originalBadgeHtml;
+      }, 1500);
     });
+  });
+}
+initGameCardCopy();
+
+// ==================== Right Panel Tab Switching ====================
+const navTabBtns = document.querySelectorAll('.nav-tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+navTabBtns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    navTabBtns.forEach((b) => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    tabContents.forEach((c) => c.classList.remove('active'));
+
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    const content = document.getElementById(`tab-${target}`);
+    if (content) content.classList.add('active');
+  });
+});
+
+// ==================== Music Player Engine ====================
+const playlist = [
+  {
+    title: '漫步香港1999 [Mạn Bộ Hương Cảng 1999]',
+    artist: '布鲁昔BlueC',
+    src: './assets/music/daobuochk1999.mp3',
+    cover: './assets/music/daobuochk1999.jpg',
+  },
+  {
+    title: '蘭亭序 [Lan Đình Tự]',
+    artist: 'Jay Chou (周杰伦)',
+    src: './assets/music/landinhtu.mp3',
+    cover: './assets/music/JayChouCapricorn.jpg',
+  },
+  {
+    title: '误把栾花当桂花 [Ngộ Loan Hoa Đương Quế Hoa]',
+    artist: 'YN-K',
+    src: './assets/music/lahoaque.mp3',
+    cover: './assets/music/lahoaque.jpg',
+  },
+  {
+    title: '昨夜风今宵月 [Tạc Dạ Phong Kim Tiêu Nguyệt]',
+    artist: '庄淇玟29',
+    src: './assets/music/trangdemnay.mp3',
+    cover: './assets/music/trangdemnay.jpg',
+  },
+];
+
+let currentTrackIndex = 0;
+
+const musicPlayer = {
+  audio: document.getElementById('audioPlayer'),
+  play: document.getElementById('playerPlayBtn'),
+  progress: document.getElementById('musicProgress'),
+  currentTime: document.getElementById('playerCurrentTime'),
+  duration: document.getElementById('playerDuration'),
+  title: document.getElementById('playerTitle'),
+  artist: document.getElementById('playerArtist'),
+  albumArt: document.getElementById('playerAlbumArt'),
+  previous: document.getElementById('playerPrevBtn'),
+  next: document.getElementById('playerNextBtn'),
+  volumeNotice: document.getElementById('music-volume-notice'),
+  volumeNoticeTimer: null,
+};
+
+function formatMediaTime(seconds) {
+  if (!Number.isFinite(seconds) || seconds <= 0) return '0:00';
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
 }
 
-function playTrack() {
-    audio.play();
-    playIcon.classList.remove('fa-play');
-    playIcon.classList.add('fa-pause');
+function syncMusicState() {
+  const { audio, play, progress, currentTime, duration } = musicPlayer;
+  if (!audio || !progress) return;
+  const total = Number.isFinite(audio.duration) ? audio.duration : 0;
+  const percent = total ? (audio.currentTime / total) * 100 : 0;
+  progress.value = String(percent);
+  progress.style.setProperty('--progress', `${percent}%`);
+  if (currentTime) currentTime.textContent = formatMediaTime(audio.currentTime);
+  if (duration) duration.textContent = total ? formatMediaTime(total) : '--:--';
+  if (play) {
+    const isPlaying = !audio.paused;
+    play.classList.toggle('is-playing', isPlaying);
+    play.setAttribute('aria-pressed', String(isPlaying));
+  }
 }
 
-function pauseTrack() {
+async function playMusic() {
+  const { audio } = musicPlayer;
+  if (!audio) return;
+  try {
+    await audio.play();
+  } catch (err) {
+    console.warn('Playback error:', err);
+  }
+  syncMusicState();
+  renderPlaylistItems();
+}
+
+function toggleMusicPlayback() {
+  const { audio } = musicPlayer;
+  if (!audio) return;
+  if (audio.paused) void playMusic();
+  else {
     audio.pause();
-    playIcon.classList.remove('fa-pause');
-    playIcon.classList.add('fa-play');
+    syncMusicState();
+    renderPlaylistItems();
+  }
 }
 
-function formatTime(seconds) {
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+function changeMusicVolume(direction) {
+  const { audio, volumeNotice } = musicPlayer;
+  if (!audio) return;
+  const percent = Math.min(100, Math.max(0, Math.round(audio.volume * 100) + direction * 10));
+  audio.volume = percent / 100;
+  audio.muted = false;
+  if (!volumeNotice) return;
+  volumeNotice.textContent = `Âm lượng ${percent}%`;
+  volumeNotice.classList.add('is-visible');
+  clearTimeout(musicPlayer.volumeNoticeTimer);
+  musicPlayer.volumeNoticeTimer = setTimeout(() => volumeNotice.classList.remove('is-visible'), 1400);
 }
 
-// Initialize first track
-loadTrack(currentTrack);
-
-audio.addEventListener('loadedmetadata', () => {
-    durationEl.textContent = formatTime(audio.duration);
-});
-
-audio.addEventListener('timeupdate', () => {
-    if (audio.duration) {
-        const pct = (audio.currentTime / audio.duration) * 100;
-        progress.style.width = pct + '%';
-        currentTimeEl.textContent = formatTime(audio.currentTime);
-    }
-});
-
-// Auto-advance to next track when current one ends
-audio.addEventListener('ended', () => {
-    currentTrack = (currentTrack + 1) % playlist.length;
-    loadTrack(currentTrack);
-    playTrack();
-});
-
-// Play / Pause
-playBtn.addEventListener('click', () => {
-    if (audio.paused) {
-        playTrack();
-    } else {
-        pauseTrack();
-    }
-});
-
-// Previous track
-prevBtn.addEventListener('click', () => {
-    const wasPlaying = !audio.paused;
-    currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
-    loadTrack(currentTrack);
-    if (wasPlaying) playTrack();
-});
-
-// Next track
-nextBtn.addEventListener('click', () => {
-    const wasPlaying = !audio.paused;
-    currentTrack = (currentTrack + 1) % playlist.length;
-    loadTrack(currentTrack);
-    if (wasPlaying) playTrack();
-});
-
-// Seek: click + drag
-let isDragging = false;
-
-function seekTo(e) {
-    const rect = progressBar.getBoundingClientRect();
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
-    const pct = x / rect.width;
-    audio.currentTime = pct * audio.duration;
+async function changeMusicTrack(direction) {
+  const { audio, title, artist, albumArt } = musicPlayer;
+  if (!audio) return;
+  const wasPlaying = !audio.paused;
+  currentTrackIndex = (currentTrackIndex + direction + playlist.length) % playlist.length;
+  const track = playlist[currentTrackIndex];
+  if (title) title.textContent = track.title;
+  if (artist) artist.textContent = track.artist;
+  if (albumArt) albumArt.src = track.cover;
+  audio.src = track.src;
+  audio.load();
+  syncMusicState();
+  renderPlaylistItems();
+  if (wasPlaying) await playMusic();
 }
 
-progressBar.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    seekTo(e);
-});
+function loadInitialTrack() {
+  const { audio, title, artist, albumArt } = musicPlayer;
+  if (!audio) return;
+  const track = playlist[currentTrackIndex];
+  if (title) title.textContent = track.title;
+  if (artist) artist.textContent = track.artist;
+  if (albumArt) albumArt.src = track.cover;
+  audio.src = track.src;
+  audio.volume = 0.6;
+}
 
-document.addEventListener('mousemove', (e) => {
-    if (isDragging) seekTo(e);
-});
+function renderPlaylistItems() {
+  const container = document.getElementById('playlist-container');
+  if (!container) return;
+  container.innerHTML = playlist
+    .map(
+      (track, i) => `
+    <div class="playlist-item ${i === currentTrackIndex ? 'active' : ''}" data-track-index="${i}">
+      <img class="playlist-item-art" src="${track.cover}" alt="" />
+      <div class="playlist-item-info">
+        <span class="playlist-item-title">${track.title}</span>
+        <span class="playlist-item-artist">${track.artist}</span>
+      </div>
+      <span class="playlist-item-play">
+        <i class="fas ${i === currentTrackIndex && !musicPlayer.audio.paused ? 'fa-volume-high' : 'fa-play'}"></i>
+      </span>
+    </div>
+  `
+    )
+    .join('');
 
-document.addEventListener('mouseup', () => {
-    isDragging = false;
-});
-
-// Touch support
-progressBar.addEventListener('touchstart', (e) => {
-    isDragging = true;
-    seekTo(e);
-}, { passive: true });
-
-document.addEventListener('touchmove', (e) => {
-    if (isDragging) seekTo(e);
-}, { passive: true });
-
-document.addEventListener('touchend', () => {
-    isDragging = false;
-});
-
-// ==================== Click-to-Start Overlay ====================
-const startOverlay = document.getElementById('startOverlay');
-const bgmAudio = document.getElementById('bgmAudio');
-
-startOverlay.addEventListener('click', () => {
-    startOverlay.classList.add('hidden');
-    document.body.classList.add('content-loaded');
-    bgmAudio.play();
-
-    // Remove overlay from DOM after fade-out transition
-    startOverlay.addEventListener('transitionend', () => {
-        startOverlay.remove();
+  container.querySelectorAll('.playlist-item').forEach((item) => {
+    item.addEventListener('click', () => {
+      const idx = Number(item.dataset.trackIndex);
+      currentTrackIndex = idx;
+      const track = playlist[idx];
+      musicPlayer.title.textContent = track.title;
+      musicPlayer.artist.textContent = track.artist;
+      musicPlayer.albumArt.src = track.cover;
+      musicPlayer.audio.src = track.src;
+      musicPlayer.audio.load();
+      playMusic();
     });
+  });
+}
+
+function initMusicPlayer() {
+  const { audio, play, progress, previous, next } = musicPlayer;
+  if (!audio || !play || !progress) return;
+
+  loadInitialTrack();
+  renderPlaylistItems();
+
+  play.addEventListener('click', toggleMusicPlayback);
+  previous?.addEventListener('click', () => changeMusicTrack(-1));
+  next?.addEventListener('click', () => changeMusicTrack(1));
+
+  progress.addEventListener('input', () => {
+    if (!Number.isFinite(audio.duration)) return;
+    audio.currentTime = (Number(progress.value) / 100) * audio.duration;
+    syncMusicState();
+  });
+
+  audio.addEventListener('ended', () => changeMusicTrack(1));
+  ['loadedmetadata', 'durationchange', 'timeupdate', 'play', 'pause'].forEach((evt) => {
+    audio.addEventListener(evt, syncMusicState);
+  });
+}
+
+initMusicPlayer();
+
+// Keyboard shortcuts for Music Dock: Space, Arrows
+document.addEventListener('keydown', (event) => {
+  if (['INPUT', 'TEXTAREA'].includes(event.target.tagName)) return;
+  if (event.ctrlKey || event.altKey || event.metaKey) return;
+
+  const key = event.code === 'Space' ? ' ' : event.key;
+  if ([' ', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(key)) {
+    event.preventDefault();
+    if (key === ' ') toggleMusicPlayback();
+    else if (key === 'ArrowUp') changeMusicVolume(1);
+    else if (key === 'ArrowDown') changeMusicVolume(-1);
+    else if (key === 'ArrowLeft') changeMusicTrack(-1);
+    else if (key === 'ArrowRight') changeMusicTrack(1);
+  }
 });

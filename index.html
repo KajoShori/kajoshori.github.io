@@ -1,128 +1,407 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nguyen Thang (KajoShori) – kajoshori.github.io</title>
+  <meta name="description" content="Trang cá nhân của Nguyen Thang (KajoShori)" />
+  <meta name="author" content="KajoShori" />
+  <meta name="theme-color" content="#060913" />
 
-    <title>KajoShori</title>
-    <link rel="icon" type="image/jpeg" href="./assets/imgs/avt.jpeg">
+  <link rel="icon" type="image/jpeg" href="./assets/imgs/avt.jpeg" />
 
-    <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    rel="stylesheet" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512‑PLACEHOLDER_INTEGRITY_HASH" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script defer src="./assets/js/script.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <script defer src="./assets/js/script.js"></script>
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="header_links">
-                <ul class="nav_links">
-                    <!---                    <li class="nav_link"><a href="https://kajoshori.github.io">Home</a></li>
-                    <li class="nav_link"><a href="https://kajoshori.github.io/repo">JB Repo</a></li> --->
-                </ul>
-            </div>
-        </nav>
-    </header>
+  <!-- Scanline CRT Effect -->
+  <div class="scanlines" aria-hidden="true"></div>
 
-    <section class="main">
-        <img src="./assets/imgs/avt.jpg" alt="Avatar" class="avatar">
-        <h1>Nguyen Thang (KajoShori)</h1>
-        <p id="age">Loading...</p>
-        <ul>
-            <li><a target="_blank" href="https://facebook.com/KajoShori"><i class="fa-brands fa-facebook"></i></a></li>
-            <li><a target="_blank" href="https://instagram.com/kajoshori"><i class="fa-brands fa-instagram"></i></a>
-            </li>
-            <li><a target="_blank" href="https://twitter.com/KajoShori"><i class="fa-brands fa-x-twitter"></i></a></li>
-            <li><a target="_blank" href="https://open.spotify.com/user/31yoh46qiruu5r2bne6r4zzo2zvm"><i
-                        class="fa-brands fa-spotify"></i></a></li>
-            <li><a target="_blank" href="https://locket.cam/kajoshori"><i class="fa fa-heart"></i></a></li>
-            <li><a target="_blank" href="https://discord.com/users/453360233792798730/"><i
-                        class="fa-brands fa-discord"></i></a></li>
-            <li><a target="_blank" href="https://soundcloud.com/kajoshori"><i class="fa-brands fa-soundcloud"></i></a>
-            </li>
-            <li><a target="_blank" href="https://steamcommunity.com/profiles/76561199135563864/"><i
-                        class="fa-brands fa-steam-symbol"></i></a></li>
-        </ul>
-        <ul class="socialcredit">
-            <li><a target="_blank"
-                    href="https://www.douyin.com/user/MS4wLjABAAAAWNvXlhBljM8J7fZWwYXeOh5MuPjXlMM_3K5Yj73JR0U"><i
-                        class="fab fa-tiktok"></i></a></li>
-            <li><a target="_blank" href="https://weibo.com/u/7558855956"><i class="fab fa-weibo"></i></i></a></li>
-            <li><a href="#" onclick="document.getElementById('wechat-modal').style.display='flex'; return false;"><i
-                        class="fab fa-weixin"></i></a></li>
-            <li>
-                <a target="_blank" href="https://www.xiaohongshu.com/user/profile/651c52a40000000024014d2f">
-                    <img src="./assets/imgs/xiaohongshu.png" class="iconweb">
-                </a>
-            </li>
-            <li>
-                <a target="_blank" href="https://b23.tv/UW4dvU4">
-                    <img src="./assets/imgs/bilibili.png" class="iconweb">
-                </a>
-            </li>
-        </ul>
-
-        <!-- Custom Spotify-style Music Player -->
-        <div class="music-player" id="musicPlayer">
-            <div class="player-left">
-                <img src="" alt="Album Cover" class="player-album-art" id="playerAlbumArt">
-            </div>
-            <div class="player-center">
-                <span class="player-title" id="playerTitle"></span>
-                <span class="player-artist" id="playerArtist"></span>
-                <div class="player-controls-row">
-                    <span class="player-time" id="playerCurrentTime">0:00</span>
-                    <div class="player-progress-bar" id="progressBarContainer">
-                        <div class="player-progress" id="playerProgress"></div>
-                    </div>
-                    <span class="player-time" id="playerDuration">0:00</span>
+  <main id="app-root">
+    <!-- Main Profile Screen -->
+    <section id="profile-screen" class="screen profile-screen active" aria-label="Trang hồ sơ chính">
+      <div class="profile-layout">
+        <div class="profile-stack">
+          <article class="profile-console glass-panel collapsed" id="profileConsole">
+            <!-- Left Profile Column -->
+            <aside class="profile-left-col" aria-label="Thông tin chính">
+              <div class="profile-fixed-top">
+                <!-- Banner -->
+                <div class="profile-banner">
+                  <img id="banner-image" src="./assets/imgs/bg.jpg" alt="Ảnh bìa hồ sơ" />
+                  <div class="banner-glow"></div>
                 </div>
+
+                <!-- Avatar & Status -->
+                <div class="profile-header">
+                  <div class="avatar-wrap">
+                    <img id="avatar-image" class="avatar-image avatar-glow" src="./assets/imgs/avt.jpg"
+                      alt="Ảnh đại diện" />
+                    <span id="status-orb" class="status-orb online" aria-label="Trạng thái"></span>
+                  </div>
+
+
+
+                  <span id="last-updated" class="sync-clock">VN --:--:--</span>
+                </div>
+
+                <!-- Identity Section (Panel Toggle placed top right of this section) -->
+                <div class="identity-section" id="identity-section">
+                  <div class="identity-content">
+                    <h1 id="display-name">
+                      <span id="profile-typing-name" class="profile-typing-name">Nguyen Thang</span><span
+                        class="profile-typing-cursor" aria-hidden="true">|</span>
+                    </h1>
+                    <div class="handle-bar">
+                      <span class="username">@<span id="username">KajoShori</span></span>
+                      <span class="dot-sep">•</span>
+                      <span id="clan-badge" class="server-badge" title="Location">!Ăng Thén Xà Lơ</span>
+                    </div>
+                    <p id="status-text" class="status-subtext"><span class="inline-dot online"></span><span
+                        id="age-text">Loading...</span></p>
+                  </div>
+
+                  <button id="panelToggleBtn" class="btn-icon-action panel-toggle-btn is-collapsed" type="button"
+                    aria-label="Mở rộng bảng" aria-controls="rightPanelContainer" aria-expanded="false"
+                    title="Mở rộng bảng (F)">
+                    <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                      <line x1="15" y1="3" x2="15" y2="21" />
+                      <polyline id="toggleChevron" points="11 9 8 12 11 15" />
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Tags / Badges -->
+                <div class="badge-list" aria-label="Thẻ hồ sơ">
+                  <span class="tag-badge">Gamer</span>
+                  <span class="tag-badge">Music</span>
+                  <span class="tag-badge">Anime</span>
+                  <span class="tag-badge">Coder</span>
+                </div>
+
+                <hr class="col-divider" />
+              </div>
+
+              <!-- Scrollable Profile Body -->
+              <div class="profile-scroll-body">
+                <div class="info-section">
+                  <!--<div class="section-label">Tiểu sử</div> -->
+                  <p class="bio-text">Biển người mênh mông, nay được tương ngộ cùng các hạ tại chốn này, âu cũng là chữ
+                    duyên.</p>
+                </div>
+
+                <div class="info-section">
+                  <div class="connections-list">
+                    <a class="conn-item" href="https://facebook.com/KajoShori" target="_blank"
+                      rel="noopener noreferrer">
+                      <span class="conn-left"><span class="conn-icon"><i
+                            class="fa-brands fa-facebook-f"></i></span><span class="conn-name">Facebook</span></span>
+                      <svg class="conn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                    <a class="conn-item" href="https://instagram.com/kajoshori" target="_blank"
+                      rel="noopener noreferrer">
+                      <span class="conn-left"><span class="conn-icon"><i class="fa-brands fa-instagram"></i></span><span
+                          class="conn-name">Instagram</span></span>
+                      <svg class="conn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                    <a class="conn-item" href="https://twitter.com/KajoShori" target="_blank" rel="noopener noreferrer">
+                      <span class="conn-left"><span class="conn-icon"><i class="fa-brands fa-x-twitter"></i></span><span
+                          class="conn-name">X</span></span>
+                      <svg class="conn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                    <a class="conn-item" href="https://open.spotify.com/user/31yoh46qiruu5r2bne6r4zzo2zvm"
+                      target="_blank" rel="noopener noreferrer">
+                      <span class="conn-left"><span class="conn-icon"><i class="fa-brands fa-spotify"></i></span><span
+                          class="conn-name">Spotify</span></span>
+                      <svg class="conn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                    <a class="conn-item" href="https://locket.cam/kajoshori" target="_blank" rel="noopener noreferrer">
+                      <span class="conn-left"><span class="conn-icon"><i class="fa fa-heart"></i></span><span
+                          class="conn-name">Locket</span></span>
+                      <svg class="conn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                    <a class="conn-item" href="https://discord.com/users/453360233792798730/" target="_blank"
+                      rel="noopener noreferrer">
+                      <span class="conn-left"><span class="conn-icon"><i class="fa-brands fa-discord"></i></span><span
+                          class="conn-name">Discord</span></span>
+                      <svg class="conn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                    <a class="conn-item" href="https://soundcloud.com/kajoshori" target="_blank"
+                      rel="noopener noreferrer">
+                      <span class="conn-left"><span class="conn-icon"><i
+                            class="fa-brands fa-soundcloud"></i></span><span class="conn-name">SoundCloud</span></span>
+                      <svg class="conn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                    <a class="conn-item" href="https://steamcommunity.com/profiles/76561199135563864/" target="_blank"
+                      rel="noopener noreferrer">
+                      <span class="conn-left"><span class="conn-icon"><i
+                            class="fa-brands fa-steam-symbol"></i></span><span class="conn-name">Steam</span></span>
+                      <svg class="conn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="info-section">
+                  <div class="section-label">Social Credit ++</div>
+                  <div class="connections-list">
+                    <a class="conn-item"
+                      href="https://www.douyin.com/user/MS4wLjABAAAAWNvXlhBljM8J7fZWwYXeOh5MuPjXlMM_3K5Yj73JR0U"
+                      target="_blank" rel="noopener noreferrer">
+                      <span class="conn-left"><span class="conn-icon"><i class="fab fa-tiktok"></i></span><span
+                          class="conn-name">抖音 Douyin</span></span>
+                      <svg class="conn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                    <a class="conn-item" href="https://weibo.com/u/7558855956" target="_blank"
+                      rel="noopener noreferrer">
+                      <span class="conn-left"><span class="conn-icon"><i class="fab fa-weibo"></i></span><span
+                          class="conn-name">微博 Weibo</span></span>
+                      <svg class="conn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                    <a class="conn-item" href="#"
+                      onclick="document.getElementById('wechat-modal').style.display='flex'; return false;">
+                      <span class="conn-left"><span class="conn-icon"><i class="fab fa-weixin"></i></span><span
+                          class="conn-name">微信 WeChat</span></span>
+                      <i class="fas fa-qrcode" style="font-size: 12px; color: #8292b5;"></i>
+                    </a>
+                    <a class="conn-item" href="https://www.xiaohongshu.com/user/profile/651c52a40000000024014d2f"
+                      target="_blank" rel="noopener noreferrer">
+                      <span class="conn-left"><span class="conn-icon"><img src="./assets/imgs/xiaohongshu.png"
+                            class="conn-icon-img" alt="小红书"></span><span class="conn-name">小红书</span></span>
+                      <svg class="conn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                    <a class="conn-item conn-item-wide" href="https://b23.tv/UW4dvU4" target="_blank"
+                      rel="noopener noreferrer">
+                      <span class="conn-left"><span class="conn-icon"><img src="./assets/imgs/bilibili.png"
+                            class="conn-icon-img" alt="Bilibili"></span><span class="conn-name">哔哩哔哩
+                          Bilibili</span></span>
+                      <svg class="conn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            <!-- Right Widgets Column (Expandable) -->
+            <div id="rightPanelContainer" class="right-panel-container collapsed" inert>
+              <div class="right-widgets-inner">
+                <!-- Navigation Tabs -->
+                <nav class="widgets-nav-tabs" role="tablist" aria-label="Nội dung chi tiết">
+                  <button id="nav-game" class="nav-tab-btn active" data-tab="game" type="button" role="tab"
+                    aria-selected="true" aria-controls="tab-game">
+                    Game
+                    <span class="tab-indicator"></span>
+                  </button>
+                  <button id="nav-music" class="nav-tab-btn" data-tab="music" type="button" role="tab"
+                    aria-selected="false" aria-controls="tab-music">
+                    Playlist
+                    <span class="tab-indicator"></span>
+                  </button>
+                </nav>
+
+                <!-- TAB 1: Game -->
+                <div id="tab-game" class="tab-content active" role="tabpanel" aria-labelledby="nav-game" tabindex="0">
+                  <div class="featured-showcase-card">
+                    <div class="showcase-info">
+                      <h3 class="showcase-name">KajoShori</h3>
+                      <div class="showcase-meta">
+                        <span class="showcase-handle">Giang hồ dậy sóng, binh đao loạn lạc, bằng hữu có nguyện cùng tại
+                          hạ kề vai sát cánh, bình định thiên hạ một phen?</span>
+                      </div>
+                      <p class="showcase-quote">Kiếm đã rút khỏi vỏ, chỉ chờ bằng hữu cùng xuất chinh!</p>
+                    </div>
+                    <div class="showcase-art-wrap" aria-hidden="true">
+                      <img class="showcase-art" src="./assets/imgs/avt2.jpg?v=2" alt="Featured artwork" />
+                      <div class="showcase-art-overlay"></div>
+                    </div>
+                  </div>
+
+                  <div class="widgets-header">
+                    <h2 class="widgets-title">Game Profiles</h2>
+                  </div>
+                  <div class="apps-grid">
+                    <div class="app-card game-card" data-copy="802495170" title="Click để copy UID: 802495170">
+                      <div class="app-icon-wrap game-icon-wrap">
+                        <img src="./assets/imgs/games/hsr.png" alt="Honkai: Star Rail" />
+                      </div>
+                      <div class="app-text">
+                        <strong class="app-title">Honkai: Star Rail</strong>
+                        <span class="app-detail">802495170 • Asia</span>
+                      </div>
+                      <span class="copy-badge"><i class="fa-regular fa-copy"></i></span>
+                    </div>
+
+                    <div class="app-card game-card" data-copy="1309409201" title="Click để copy UID: 1309409201">
+                      <div class="app-icon-wrap game-icon-wrap">
+                        <img src="./assets/imgs/games/zzz.png" alt="Zenless Zone Zero" />
+                      </div>
+                      <div class="app-text">
+                        <strong class="app-title">Zenless Zone Zero</strong>
+                        <span class="app-detail">1309409201 • Asia</span>
+                      </div>
+                      <span class="copy-badge"><i class="fa-regular fa-copy"></i></span>
+                    </div>
+
+                    <div class="app-card game-card" data-copy="905689653" title="Click để copy UID: 905689653">
+                      <div class="app-icon-wrap game-icon-wrap">
+                        <img src="./assets/imgs/games/wuwa.png" alt="Wuthering Waves" />
+                      </div>
+                      <div class="app-text">
+                        <strong class="app-title">Wuthering Waves</strong>
+                        <span class="app-detail">905689653 • SEA</span>
+                      </div>
+                      <span class="copy-badge"><i class="fa-regular fa-copy"></i></span>
+                    </div>
+
+                    <div class="app-card game-card" data-copy="『KajoShorii』"
+                      title="Click để copy tên ingame: 『KajoShorii』">
+                      <div class="app-icon-wrap game-icon-wrap">
+                        <img src="./assets/imgs/games/aov.png" alt="Liên Quân Mobile" />
+                      </div>
+                      <div class="app-text">
+                        <strong class="app-title">Liên Quân Mobile</strong>
+                        <span class="app-detail">『KajoShorii』</span>
+                      </div>
+                      <span class="copy-badge"><i class="fa-regular fa-copy"></i></span>
+                    </div>
+                  </div>
+
+                  <!-- Game PC Section -->
+                  <div class="widgets-header" style="margin-top: 16px;">
+                    <h2 class="widgets-title">Game PC</h2>
+
+                  </div>
+                  <div class="apps-grid">
+                    <a class="app-card game-link-card" href="https://s.team/p/gjbt-pbhm/mhpbvtrk" target="_blank"
+                      rel="noopener noreferrer" title="Mở trang Counter-Strike 2 trên Steam">
+                      <div class="app-icon-wrap game-icon-wrap">
+                        <img src="./assets/imgs/games/cs2.png" alt="Counter-Strike 2" />
+                      </div>
+                      <div class="app-text">
+                        <strong class="app-title">Counter-Strike 2</strong>
+                        <span class="app-detail">Steam Quick Add / Profile</span>
+                      </div>
+                      <span class="copy-badge"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- TAB 2: Playlist Nhạc -->
+                <div id="tab-music" class="tab-content" role="tabpanel" aria-labelledby="nav-music" tabindex="0">
+                  <div class="widgets-header">
+                    <h2 class="widgets-title">Danh sách bài hát</h2>
+                  </div>
+                  <div id="playlist-container" class="playlist-list"></div>
+                </div>
+              </div>
             </div>
-            <div class="player-right">
-                <button class="player-nav-btn" id="playerPrevBtn" aria-label="Previous">
-                    <i class="fas fa-backward-step"></i>
-                </button>
-                <button class="player-play-btn" id="playerPlayBtn" aria-label="Play/Pause">
-                    <i class="fas fa-play" id="playerPlayIcon"></i>
-                </button>
-                <button class="player-nav-btn" id="playerNextBtn" aria-label="Next">
-                    <i class="fas fa-forward-step"></i>
-                </button>
-            </div>
-            <div class="player-queue">
-                <span class="player-queue-item" id="playerNextTrack"></span>
-                <span class="player-queue-item" id="playerPrevTrack"></span>
-            </div>
+          </article>
+
+          <!-- Music Dock -->
+          <section class="music-dock" aria-label="Trình phát nhạc"
+            title="Space: phát/dừng · ↑/↓: âm lượng ±10% · ←/→: chuyển bài">
+            <output id="music-volume-notice" class="music-volume-notice" aria-live="polite" aria-atomic="true"></output>
             <audio id="audioPlayer" preload="metadata"></audio>
-        </div>
-    </section>
-
-    <!-- Click-to-Start Overlay -->
-    <div id="startOverlay" class="start-overlay">
-        <div class="overlay-content">
-            <div class="overlay-icon-wrapper">
-                <span class="click-ripple"></span>
-                <i class="fa-solid fa-hand-pointer overlay-icon"></i>
+            <img class="music-cover" id="playerAlbumArt" src="./assets/music/daobuochk1999.jpg"
+              alt="Bìa bài nhạc đang phát" />
+            <div class="music-meta">
+              <strong id="playerTitle">漫步香港1999 [Mạn Bộ Hương Cảng 1999]</strong>
+              <small id="playerArtist">布鲁昔BlueC</small>
+              <div class="music-dock-progress">
+                <span id="playerCurrentTime">0:00</span>
+                <input id="musicProgress" type="range" min="0" max="100" value="0" step="0.1"
+                  aria-label="Tiến độ bài nhạc" />
+                <span id="playerDuration">--:--</span>
+              </div>
             </div>
-            <p>Click anywhere to enter</p>
+            <div class="music-controls">
+              <button id="playerPrevBtn" class="music-skip" type="button" aria-label="Bài trước" title="Bài trước (←)">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 5h3v14H6zm13 0v14L9 12z" />
+                </svg>
+              </button>
+              <button id="playerPlayBtn" class="music-play" type="button" aria-label="Phát nhạc" aria-pressed="false"
+                title="Phát nhạc (Space)">
+                <span id="music-play-icon" aria-hidden="true">
+                  <svg class="music-icon-play" viewBox="0 0 24 24">
+                    <path d="m8 5 11 7-11 7z" />
+                  </svg>
+                  <svg class="music-icon-pause" viewBox="0 0 24 24">
+                    <path d="M6 5h4v14H6zm8 0h4v14h-4z" />
+                  </svg>
+                </span>
+              </button>
+              <button id="playerNextBtn" class="music-skip" type="button" aria-label="Bài tiếp theo"
+                title="Bài tiếp theo (→)">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M15 5h3v14h-3zM5 5v14l10-7z" />
+                </svg>
+              </button>
+            </div>
+          </section>
         </div>
-    </div>
+      </div>
+    </section>
+  </main>
 
-    <!-- Background Music -->
-    <audio id="bgmAudio" src="./assets/music/bgm.m4a" loop preload="auto"></audio>
-
-    <!-- WeChat QR Modal -->
-    <div id="wechat-modal" class="modal-overlay" onclick="if(event.target===this)this.style.display='none'">
-        <div class="modal-box">
-            <button class="modal-close"
-                onclick="document.getElementById('wechat-modal').style.display='none'">&times;</button>
-            <img src="./assets/imgs/wechatqr.png" alt="WeChat QR Code" class="qr-image">
-            <p class="modal-text">Scan to add me on WeChat (微信)</p>
-        </div>
+  <!-- WeChat QR Modal -->
+  <div id="wechat-modal" class="modal-overlay" onclick="if(event.target===this)this.style.display='none'">
+    <div class="modal-box">
+      <button class="modal-close"
+        onclick="document.getElementById('wechat-modal').style.display='none'">&times;</button>
+      <img src="./assets/imgs/wechatqr.png" alt="WeChat QR Code" class="qr-image" />
+      <p class="modal-text">Scan to add me on WeChat (微信)</p>
     </div>
+  </div>
 </body>
 
 </html>
