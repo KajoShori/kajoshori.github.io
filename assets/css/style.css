@@ -712,6 +712,32 @@ a {
   flex-shrink: 0;
 }
 
+.panel-close-mobile {
+  display: none;
+  margin-left: auto;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.panel-close-mobile:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.panel-close-mobile svg {
+  width: 16px;
+  height: 16px;
+}
+
 .nav-tab-btn {
   position: relative;
   background: transparent;
@@ -1316,34 +1342,92 @@ a {
   .profile-layout,
   .profile-layout:has(.profile-console.collapsed) {
     width: 100%;
-    max-width: 500px;
+    max-width: 480px;
+  }
+
+  .profile-stack {
+    height: auto;
+    max-height: none;
   }
 
   .profile-console {
-    height: auto;
-    max-height: none;
+    height: min(720px, 86dvh);
+    max-height: 86dvh;
     flex-direction: column;
+    overflow: hidden;
   }
 
   .profile-left-col {
     width: 100%;
-    height: auto;
+    height: 100%;
     border-right: none;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
   }
 
+  .profile-scroll-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+  }
+
+  /* When expanded on mobile, switch between left profile and right panel or let them flow cleanly */
   .right-panel-container {
     width: 100%;
-    height: 440px;
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    flex: 1 1 auto;
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    background: rgba(13, 17, 30, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .right-panel-container.collapsed {
+    max-width: 0 !important;
+    width: 0 !important;
     height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(10px);
+  }
+
+  .right-widgets-inner {
+    padding: 16px;
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .panel-close-mobile {
+    display: inline-flex;
   }
 }
 
 @media (max-width: 480px) {
   .screen {
-    padding: 12px 8px;
+    padding: 10px 8px;
+  }
+
+  .profile-console {
+    height: min(700px, 88dvh);
+    max-height: 88dvh;
   }
 
   .profile-banner {

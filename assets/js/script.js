@@ -110,6 +110,7 @@ startProfileNameTyping();
 
 // ==================== Panel Expand / Collapse ====================
 const panelToggleBtn = document.getElementById('panelToggleBtn');
+const panelCloseMobileBtn = document.getElementById('panelCloseMobileBtn');
 const rightPanelContainer = document.getElementById('rightPanelContainer');
 
 function toggleRightPanel() {
@@ -126,6 +127,7 @@ function toggleRightPanel() {
 }
 
 if (panelToggleBtn) panelToggleBtn.addEventListener('click', toggleRightPanel);
+if (panelCloseMobileBtn) panelCloseMobileBtn.addEventListener('click', toggleRightPanel);
 
 // Shortcut: 'F' key toggles panel
 document.addEventListener('keydown', (event) => {
